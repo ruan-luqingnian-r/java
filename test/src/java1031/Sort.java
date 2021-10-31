@@ -14,7 +14,7 @@ public class Sort {
             arr[i] = (int)(Math.random() * 100 + 1);
         }
         System.out.println("排序前：" + Arrays.toString(arr));
-        bubbleSort(arr);
+        selectSort(arr);
         System.out.println("排序后：" + Arrays.toString(arr));
     }
 
@@ -40,8 +40,20 @@ public class Sort {
      */
     public static void selectSort(int[] arr){
         for (int i = 0; i < arr.length; i++) {
-
+            //保存最小值和下标
+            int minIndex = i;
+            int minValue = arr[i];
+            //遍历数组找到真的最小值
+            for (int j = i + 1; j < arr.length; j++) {
+                if (minValue > arr[j]){
+                    minIndex = j;
+                    minValue = arr[j];
+                }
+            }
+            if (minIndex != i){
+                arr[minIndex] = arr[i];
+                arr[i] = minValue;
+            }
         }
-
     }
 }
