@@ -14,7 +14,7 @@ public class Sort {
             arr[i] = (int)(Math.random() * 100 + 1);
         }
         System.out.println("排序前：" + Arrays.toString(arr));
-        insertionSort(arr);
+        quickSort(arr);
         System.out.println("排序后：" + Arrays.toString(arr));
     }
 
@@ -74,6 +74,59 @@ public class Sort {
                 index--;
             }
             arr[index + 1] = value;
+        }
+    }
+
+    public static void hellSort(int[] arr){
+        for (int gap = (arr.length / 2); gap > 0; gap /= 2){
+            for (int i = gap; i < arr.length; i++) {
+                int value = arr[i];
+                int index = i - gap ;
+                while (index >= 0 && arr[index] > value){
+                    arr[index + gap] = arr[index];
+                    index = index - gap;
+                }
+                arr[index + gap] = value;
+            }
+        }
+    }
+    public static void quickSort(int[] arr){
+        quick(arr,0, arr.length - 1);
+    }
+
+    private static void quick(int[] arr,int left,int right){
+        int l = left;
+        int r = right;
+        int median = arr[(left + right) / 2];
+        while (l < r){
+            while (arr[l] < median){
+                l++;
+            }
+            while (arr[r] > median){
+                r--;
+            }
+            if (l >= r){
+                break;
+            }
+            arr[l] = arr[l] ^ arr[r];
+            arr[r] = arr[r] ^ arr[l];
+            arr[l] = arr[l] ^ arr[r];
+            if (arr[l] == median){
+                r--;
+            }
+            if (arr[r] == median){
+                l++;
+            }
+        }
+        if (l == r){
+            l++;
+            r--;
+        }
+        if (l < right){
+            quick(arr, l, right);
+        }
+        if (left < r){
+            quick(arr, left, r);
         }
     }
 }
