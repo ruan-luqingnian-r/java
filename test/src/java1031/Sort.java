@@ -14,7 +14,7 @@ public class Sort {
             arr[i] = (int)(Math.random() * 100 + 1);
         }
         System.out.println("排序前：" + Arrays.toString(arr));
-        selectSort(arr);
+        insertionSort(arr);
         System.out.println("排序后：" + Arrays.toString(arr));
     }
 
@@ -54,6 +54,26 @@ public class Sort {
                 arr[minIndex] = arr[i];
                 arr[i] = minValue;
             }
+        }
+    }
+
+    /**
+     * 插入排序
+     * @param arr
+     */
+    public static void insertionSort(int[] arr){
+        for (int i = 1; i < arr.length; i++) {
+            //保存数据和下标
+            //待插入数据
+            int value = arr[i];
+            //下标
+            int index = i - 1;
+            //遍历链表找到待插入位置
+            while (index >= 0 && arr[index] > value){
+                arr[index + 1] = arr[index];
+                index--;
+            }
+            arr[index + 1] = value;
         }
     }
 }
