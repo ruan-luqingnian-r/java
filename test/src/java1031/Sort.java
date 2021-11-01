@@ -1,6 +1,8 @@
 package java1031;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @Author: ruan
@@ -16,6 +18,15 @@ public class Sort {
         System.out.println("排序前：" + Arrays.toString(arr));
         quickSort(arr);
         System.out.println("排序后：" + Arrays.toString(arr));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("要查找的数据为：");
+        int target = scanner.nextInt();
+        ArrayList<Integer> list = binarySearch(arr, target);
+        if (list.isEmpty()){
+            System.out.println("无数据");
+        }else {
+            System.out.println(list);
+        }
     }
 
     /**
@@ -127,6 +138,43 @@ public class Sort {
         }
         if (left < r){
             quick(arr, left, r);
+        }
+    }
+
+    public static ArrayList<Integer> binarySearch(int[] arr, int target){
+        return binary(arr, target, 0, arr.length - 1);
+    }
+
+    private static ArrayList<Integer> binary(int[] arr, int target, int left, int right){
+        int mod = (left  + right) / 2;
+        int value = arr[mod];
+        if (left > right){
+            return new ArrayList<>();
+        }
+        if (value > target){
+            return binary(arr, target, left, mod - 1);
+        } else if (value < target) {
+            return binary(arr, target, mod + 1, right);
+        }else {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(mod);
+            int temp1 = mod + 1;
+            int temp2 = mod - 1;
+            while (true){
+                if (temp1 > arr.length || arr[temp1] != target){
+                    break;
+                }
+                list.add(temp1);
+                temp1++;
+            }
+            while (true){
+                if (temp2 < 0 || arr[temp2] != target){
+                    break;
+                }
+                list.add(temp2);
+                temp2--;
+            }
+            return list;
         }
     }
 }
