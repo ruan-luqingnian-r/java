@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.HashMap;
+
 /**
  * @Author: ruan
  * Date: 2021/11/15 20:21
@@ -35,7 +37,24 @@ public class 两数之和 {
                 }
             }
         }
-
         return ans;
+    }
+
+    /**
+     * 优化思路，使用HashMap
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int[] twoSum2(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        //将数组值放入
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])){
+                return new int[] {map.get(target - nums[i]), i};
+            }
+            map.put(nums[i],i);
+        }
+        return null;
     }
 }
