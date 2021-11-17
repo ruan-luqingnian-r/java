@@ -18,7 +18,51 @@ public class 两数相加 {
 
     }
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
+        //创建结果集
+        ListNode result = new ListNode();
+        //获取首节点
+        ListNode resTemp = result;
+        //创建进位
+        int nextSum = 0;
+        //标识位，是否进位
+        int flag = 0;
+        //遍历链表数据处理
+        while (l1 != null && l2 != null){
+            int ans = 0;
+            //如果不需要进位
+            if (flag == 0){
+                ans = l1.val + l2.val;
+                resTemp.val = ans % 10;
+                nextSum = ans / 10;
+                flag++;
+            }else {
+                //如果需要进位
+                ans = l1.val + l2.val + nextSum;
+                resTemp.next = new ListNode(ans % 10);
+                resTemp = resTemp.next;
+                nextSum = ans / 10;
+            }
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        while (l1 != null){
+            int ans = l1.val + nextSum;
+            resTemp.next = new ListNode(ans % 10);
+            resTemp = resTemp.next;
+            nextSum = ans / 10;
+            l1 = l1.next;
+        }
+        while (l2 != null){
+            int ans = l2.val + nextSum;
+            resTemp.next = new ListNode(ans % 10);
+            resTemp = resTemp.next;
+            nextSum = ans / 10;
+            l2 = l2.next;
+        }
+        if (nextSum != 0){
+            resTemp.next = new ListNode(nextSum);
+        }
+        return result;
     }
 }
 class ListNode {
