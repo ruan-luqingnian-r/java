@@ -8,7 +8,7 @@ package Java设计模式.创建型设计模式.单例设计模式;
 public class SingletonHungry {
     private static SingletonHungry instance = new SingletonHungry();
     private SingletonHungry (){};
-    public SingletonHungry getInstance(){
+    public static SingletonHungry getInstance(){
         return instance;
     }
 }
