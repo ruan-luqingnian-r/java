@@ -27,6 +27,8 @@ public class BinaryTreeDemo {
         binaryTree.modOrder();
         System.out.println("==后续==");
         binaryTree.postOrder();
+        HeroNode node = binaryTree.preFend(5);
+        System.out.println(node);
 
 
     }
@@ -118,6 +120,76 @@ class HeroNode{
         }
         System.out.println(this);
     }
+
+    /**
+     * 前序查找
+     * @param no 要查找的序号
+     * @return 返回改no
+     */
+    public HeroNode proFend(int no){
+        if (this.no == no){
+            return this;
+        }
+        //结果节点
+        HeroNode resNode = null;
+        if (this.left != null){
+            resNode = this.left.proFend(no);
+        }
+        if (resNode != null){
+            return resNode;
+        }
+        if (this.right != null){
+            resNode = this.right.proFend(no);
+        }
+        return resNode;
+    }
+
+    /**
+     * 中序查找
+     * @param no
+     * @return
+     */
+    public HeroNode modFend(int no){
+        HeroNode resNode = null;
+        if (this.left != null){
+            resNode = this.left.modFend(no);
+        }
+        if (resNode != null){
+            return resNode;
+        }
+        if (this.no == no){
+            return this;
+        }
+        if (this.right != null){
+            resNode = this.right.modFend(no);
+        }
+        return resNode;
+    }
+
+    /**
+     * 后续遍历
+     * @param no
+     * @return
+     */
+    public HeroNode postFend(int no){
+        HeroNode resNode = null;
+        if (this.left != null){
+            resNode = this.left.postFend(no);
+        }
+        if (resNode != null){
+            return resNode;
+        }
+        if (this.right != null){
+            resNode = this.right.postFend(no);
+        }
+        if (resNode != null){
+            return resNode;
+        }
+        if (this.no == no){
+            return this;
+        }
+        return resNode;
+    }
 }
 
 /**
@@ -160,6 +232,40 @@ class BinaryTree{
             this.root.postOrder();
         }else {
             System.out.println("二叉树为空");
+        }
+    }
+    /**
+     * 前序遍历
+     */
+    public HeroNode preFend(int no){
+        if (this.root != null){
+            return this.root.proFend(no);
+        }else {
+            System.out.println("无此节点");
+            return null;
+        }
+    }
+
+    /**
+     * 中序遍历
+     */
+    public HeroNode modFend(int no){
+        if (this.root != null){
+            return this.root.modFend(no);
+        }else {
+            System.out.println("无此节点");
+            return null;
+        }
+    }
+    /**
+     * 后序遍历
+     */
+    public HeroNode postFend(int no){
+        if (this.root != null){
+            return this.root.postFend(no);
+        }else {
+            System.out.println("无此节点");
+            return null;
         }
     }
 }
