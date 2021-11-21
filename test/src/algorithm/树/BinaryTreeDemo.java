@@ -87,3 +87,47 @@ class HeroNode{
         System.out.println(this);
     }
 }
+
+/**
+ * 创建二叉树
+ */
+class BinaryTree{
+    /**
+     * 根节点
+     */
+    private HeroNode root;
+
+    public void setRoot(HeroNode root) {
+        this.root = root;
+    }
+    /**
+     * 前序遍历
+     */
+    public void preOrder(){
+        if (this.root != null){
+            this.root.preOrder();
+        }else {
+            System.out.println("二叉树为空");
+        }
+    }
+    /**
+     * 中序遍历
+     */
+    public void modOrder(){
+        if (this.root != null){
+            this.root.midOrder();
+        }else {
+            System.out.println("二叉树为空");
+        }
+    }
+    /**
+     * 后序遍历
+     */
+    public void postOrder(){
+        if (this.root != null){
+            this.root.postOrder();
+        }else {
+            System.out.println("二叉树为空");
+        }
+    }
+}
