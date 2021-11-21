@@ -6,6 +6,28 @@ package algorithm.树;
  * @Description: 二叉树
  */
 public class BinaryTreeDemo {
+    public static void main(String[] args) {
+        //创建一颗二叉树
+        BinaryTree binaryTree = new BinaryTree();
+        //创建节点
+        HeroNode node1 = new HeroNode(1, "宋江");
+        HeroNode node2 = new HeroNode(2, "吴用");
+        HeroNode node3 = new HeroNode(3, "卢俊义");
+        HeroNode node4 = new HeroNode(4, "林冲");
+        //先手动创建二叉树，后期递归创建二叉树
+        node1.setLeft(node2);
+        node1.setRight(node3);
+        node3.setRight(node4);
+        binaryTree.setRoot(node1);
+        System.out.println("==前序==");
+        binaryTree.preOrder();
+        System.out.println("==中序==");
+        binaryTree.modOrder();
+        System.out.println("==后续==");
+        binaryTree.postOrder();
+
+
+    }
 }
 
 /**
@@ -34,6 +56,14 @@ class HeroNode{
     public HeroNode(int no, String name) {
         this.no = no;
         this.name = name;
+    }
+
+    public void setLeft(HeroNode left) {
+        this.left = left;
+    }
+
+    public void setRight(HeroNode right) {
+        this.right = right;
     }
 
     @Override
