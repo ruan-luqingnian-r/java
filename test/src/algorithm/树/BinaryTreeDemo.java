@@ -21,16 +21,11 @@ public class BinaryTreeDemo {
         node3.setRight(node4);
         node3.setLeft(node5);
         binaryTree.setRoot(node1);
-        System.out.println("==前序==");
+        System.out.println("==前序(删除前)==");
         binaryTree.preOrder();
-        System.out.println("==中序==");
-        binaryTree.modOrder();
-        System.out.println("==后续==");
-        binaryTree.postOrder();
-        HeroNode node = binaryTree.preFend(5);
-        System.out.println(node);
-
-
+        binaryTree.delNode(3);
+        System.out.println("==前序(删除后)==");
+        binaryTree.preOrder();
     }
 }
 
