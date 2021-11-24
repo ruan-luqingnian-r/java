@@ -190,6 +190,21 @@ class HeroNode{
         }
         return resNode;
     }
+    /**
+     * 删除节点
+     * 1.如果是叶子节点，直接删除
+     * 2.如果是非叶子节点，删除该子树
+     */
+    public void delNode(int no){
+        if (this.left != null && this.left.no == no){
+            this.left = null;
+            return;
+        }
+        if (this.right != null && this.right.no == no){
+            this.right = null;
+            return;
+        }
+    }
 }
 
 /**
