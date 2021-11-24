@@ -204,6 +204,20 @@ class HeroNode{
             this.right = null;
             return;
         }
+        if (this.left != null){
+            this.left.delNode(no);
+        }
+        if (this.right != null){
+            this.right.delNode(no);
+        }
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 }
 
@@ -281,6 +295,22 @@ class BinaryTree{
         }else {
             System.out.println("无此节点");
             return null;
+        }
+    }
+
+    /**
+     * 删除节点
+     * @param no
+     */
+    public void delNode(int no){
+        if (root != null){
+            if (root.getNo() == no){
+                root = null;
+            }else {
+                root.delNode(no);
+            }
+        }else {
+            System.out.println("空树不能删除");
         }
     }
 }
