@@ -26,6 +26,8 @@ public class 字符串转换整数 {
 
     public static void main(String[] args) {
         String s = "-91283472332";
+        int i = myAtoi(s);
+        System.out.println(i);
 
     }
 
@@ -53,6 +55,23 @@ public class 字符串转换整数 {
             sign = -1;
         }
         //继续处理后续字符内容
+        int ans = 0;
+        while (index < s.length()){
+            char aChar = chars[index];
+            if (aChar > '9' || aChar < '0'){
+                break;
+            }
+            // 题目中说：环境只能存储 32 位大小的有符号整数，因此，需要提前判：断乘以 10 以后是否越界
+            if (ans > Integer.MAX_VALUE / 10 || (ans == Integer.MAX_VALUE / 10 && (aChar - '0') > Integer.MAX_VALUE % 10)) {
+                return Integer.MAX_VALUE;
+            }
+            if (ans < Integer.MIN_VALUE / 10 || (ans == Integer.MIN_VALUE / 10 && (aChar - '0') > -(Integer.MIN_VALUE % 10))) {
+                return Integer.MIN_VALUE;
+            }
+            ans = ans * 10 + sign * (aChar - '0');
+            index++;
+        }
+        return ans;
 
 
     }
